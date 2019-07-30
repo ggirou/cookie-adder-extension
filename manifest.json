@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Cookie Adder",
+  "description": "Add cookie to specific urls. A way to bypass proxy warning like Blue Coat.",
+  "version": "1.0",
+  "permissions": [
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+  "icons": {
+    "48": "img/icon.svg",
+    "96": "img/icon.svg"
+  }
+}

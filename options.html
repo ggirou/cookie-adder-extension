@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cookie Adder Options</title>
+    <meta charset="UTF-8">
+    <style>
+        fieldset[disabled] {
+            opacity: 0.75;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p><label>Cookie: <input type="text" id="cookieInput"></label></p>
+
+    <fieldset>
+        <legend>Listening urls</legend>
+        <i>One url per line</i>
+        <br>
+        <textarea id="urls"></textarea>
+        <br>
+        <button id="saveButton" type="submit">Save options</button>
+    </fieldset>
+    <p style="visibility: hidden" id="saveStatus">Options saved.</p>
+
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+            href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a
+            href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0
+            BY</a></div>
+
+    <script src="js/options.js"></script>
+</body>
+
+</html>
