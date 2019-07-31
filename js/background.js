@@ -26,7 +26,7 @@ function rewriteCookie(e) {
   var done = false;
   e.requestHeaders.forEach(function (header) {
     if (header.name.toLowerCase() == "cookie") {
-      header.value = options.cookie + + "; " + header.value;
+      header.value = header.value + "; " + options.cookie;
       done = true;
     }
   });
