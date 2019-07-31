@@ -2,10 +2,10 @@
   "manifest_version": 2,
   "name": "Cookie Adder",
   "description": "Add cookie to specific urls. A way to bypass proxy warning like Blue Coat.",
-  "version": "1.0",
+  "version": "1.0.1",
   "browser_specific_settings": {
     "gecko": {
-      "id": "cookie-adder@guillaume.girou",
+      "id": "{16dc8a1c-5074-459e-afe6-67e25e36576e}",
       "strict_min_version": "68.0"
     }
   },
