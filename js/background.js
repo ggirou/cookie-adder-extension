@@ -16,10 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+const browserName = /(Chrome|Firefox)\//.exec(navigator.userAgent)[1];
+const browserVersion = /(Chrome|Firefox)\/([0-9.]+)/.exec(navigator.userAgent)[2];
+
 const defaultOptions = {
-  urls: [],
-  cookie: "",
+  urls: ["*://example.com"],
+  cookie: "MyCookie=MyValue; MyOtherCookie=MyOtherValue",
 };
+async function getOptions() { return (await browser.storage.local.get({ options: defaultOptions })).options; }
+async function setOptions(options) { return (await browser.storage.local.set({ options: options })); }
+
 var options;
 
 function rewriteCookie(e) {
@@ -37,15 +43,16 @@ function rewriteCookie(e) {
 }
 
 async function registerListeners() {
-  options = (await browser.storage.local.get({ options: defaultOptions })).options;
+  options = await getOptions();
+  const extraInfoSpec = browserName === "Chrome" && "76." < browserVersion ? ["blocking", "requestHeaders", "extraHeaders"] : ["blocking", "requestHeaders"];
 
   browser.webRequest.onBeforeSendHeaders.removeListener(rewriteCookie);
   browser.webRequest.onBeforeSendHeaders.addListener(
     rewriteCookie,
     { urls: options.urls },
-    ["blocking", "requestHeaders"]
+    extraInfoSpec
   );
-  console.log("Listeners registered", options);
+  console.log("Listeners registered", options, extraInfoSpec);
 }
 
 registerListeners();

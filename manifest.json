@@ -9,6 +9,7 @@
       "strict_min_version": "68.0"
     }
   },
+  "minimum_chrome_version": "76",
   "permissions": [
     "storage",
     "webRequest",
@@ -17,6 +18,7 @@
   ],
   "background": {
     "scripts": [
+      "js/chrome.js",
       "js/background.js"
     ]
   },

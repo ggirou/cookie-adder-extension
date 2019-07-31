@@ -19,6 +19,7 @@
 (function () {
     "use strict";
 
+    var backgroundPage;
     var cookieInput = document.querySelector('#cookieInput');
     var urlsTextarea = document.querySelector('#urls');
     var saveStatusElement = document.getElementById('saveStatus');
@@ -46,19 +47,19 @@
             cookie: cookieInput.value
         };
 
-        await browser.storage.local.set({ options: options });
-        const backgroundPage = (await browser.runtime.getBackgroundPage());
+        await backgroundPage.setOptions(options);
         backgroundPage.registerListeners();
         show(options);
         showSavedNotification();
+        console.log("Options saved", options);
     }
 
     // Restores the preferences stored in chrome.storage.
     async function load() {
-        const defaultOptions = (await browser.runtime.getBackgroundPage()).defaultOptions;
-        const options = (await browser.storage.local.get({ options: defaultOptions })).options;
+        backgroundPage = await browser.runtime.getBackgroundPage();
+        const options = await backgroundPage.getOptions();
         show(options);
-        console.log("Options loaded", defaultOptions, options);
+        console.log("Options loaded", options);
     }
 
     document.addEventListener('DOMContentLoaded', load);
